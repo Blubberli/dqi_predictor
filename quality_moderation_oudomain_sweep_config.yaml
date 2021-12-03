@@ -1,0 +1,43 @@
+method:
+  grid
+#  bayes
+metric:
+  goal: maximize
+  name: eval/pos_f1
+parameters:
+#  batch_size:
+#    values:
+#      - 8
+#      - 16
+#      - 32
+  learning_rate:
+    values:
+      - 7e-6
+      - 1e-5
+      - 3e-5
+      - 5e-5
+      - 7e-5
+#    min: 1e-5
+#    max: 1e-4
+  comment_parents_num:
+    values:
+      - 0
+      - 1
+      - 2
+#    min: 0
+#    max: 2
+  max_seq_length:
+    value: 256
+project:
+  regulationroom-moderator-intervention-improve-quality-outdomain-sweep-grid-optf1positive
+program:
+  # passing args here doesn't work: expecting filename. adding them to command doesn't also work: all is quoted
+  moderator_intervention_full/train_quality_moderation_outdomain.sh
+command:
+  - ${program}
+  - ${args}
+# default https://docs.wandb.ai/guides/sweeps/configuration
+#  - ${env}
+#  - ${interpreter}
+#  - ${program}
+#  - ${args}

@@ -1,0 +1,38 @@
+method:
+  grid
+#  bayes
+metric:
+  goal: maximize
+  name: eval/pos_f1
+parameters:
+  batch_size:
+#    values:
+#      - 8
+      - 16
+      - 32
+  learning_rate:
+    values:
+      - 7e-6
+      - 1e-5
+      - 3e-5
+      - 5e-5
+      - 7e-5
+#    min: 0
+#    max: 2
+  max_seq_length:
+    values:
+      - 256
+      - 512
+project:
+  dqi-prediction-sweep-grid
+program:
+  # passing args here doesn't work: expecting filename. adding them to command doesn't also work: all is quoted
+  train_jlev.sh
+command:
+  - ${program}
+  - ${args}
+# default https://docs.wandb.ai/guides/sweeps/configuration
+#  - ${env}
+#  - ${interpreter}
+#  - ${program}
+#  - ${args}
